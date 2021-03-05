@@ -3,7 +3,8 @@
 # Discription:  The app lets the user choose their news sources,  get the latest headlines from their news sources, and read the news article online.
 # Module:       lab4processes2.py
 # Discription:  Only use the concepts discussed in the class notes, find a second way for the processes to send data back to the main process.
-
+import os
+import dotenv
 import requests
 import tkinter as tk       
 import  tkinter.messagebox  as  tkmb
@@ -13,11 +14,11 @@ import  multiprocessing  as  mp
 
 '''-------------------Step 1: Fetch data--------------------'''
 """ An API call to get the names (and other info of your choosing) of all news sources that are in English and are from the US. """
-
+dotenv.load_dotenv()
 url = ('https://newsapi.org/v2/sources?'
        'language=en&'
        'country=us&'
-       'apiKey=6d27358dbca2495cb6718dbe5c55ac42')
+       f'apiKey={os.getenv("API_KEY")}')
 
 page = requests.get(url) 
 content = page.json()
