@@ -4,6 +4,8 @@
 # Module:       lab4threads.py
 # Discription:  Multithreading
 
+import os
+import dotenv
 import requests
 import tkinter as tk       
 import  tkinter.messagebox  as  tkmb
@@ -14,11 +16,11 @@ import webbrowser
 
 '''-------------------Step 1: Fetch data--------------------'''
 """ An API call to get the names (and other info of your choosing) of all news sources that are in English and are from the US. """
-
+dotenv.load_dotenv()
 url = ('https://newsapi.org/v2/sources?'
        'language=en&'
        'country=us&'
-       'apiKey=6d27358dbca2495cb6718dbe5c55ac42')
+       f'apiKey={os.getenv("API_KEY")}')
 
 page = requests.get(url) 
 content = page.json()
