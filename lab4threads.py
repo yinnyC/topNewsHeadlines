@@ -108,7 +108,7 @@ class mainWin(tk.Tk) :
         url = ('http://newsapi.org/v2/top-headlines?'
                'sources={}&'
                'pageSize=100&'     # set the number of results to maximum
-               'apiKey=6d27358dbca2495cb6718dbe5c55ac42'.format(resourceId))   
+               f'apiKey={os.getenv("API_KEY")}'.format(resourceId))   
         content = requests.get(url).json()   
         articles = content['articles']
         nameTitleUrl = [[news['source']['name'],news['title'],news['url']] for news in articles]
